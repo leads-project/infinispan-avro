@@ -1,0 +1,8 @@
+{"namespace": "org.infinispan.avro.client",
+ "type": "record",
+ "name": "Response",
+ "fields": [
+     {"name": "numResults", "type": "int"},
+     {"name": "results", "type": { "type": "array", "items": "bytes"}}
+ ]
+}

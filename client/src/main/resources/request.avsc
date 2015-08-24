@@ -1,0 +1,11 @@
+{"namespace": "org.infinispan.avro.client",
+ "type": "record",
+ "name": "Request",
+ "fields": [
+     {"name": "jpqlString", "type": "string"},
+     {"name": "schemaName", "type": "string"},
+     {"name": "startOffset",  "type": "long"},
+     {"name": "maxResult", "type": "int"},
+     {"name": "local", "type": "boolean", "default": "true"}
+      ]
+}

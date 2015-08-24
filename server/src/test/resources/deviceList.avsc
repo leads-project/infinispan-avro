@@ -1,0 +1,9 @@
+{
+  "type":"record",
+  "name":"DeviceList",
+  "namespace": "example.avro",
+  "fields":[
+    {"name": "name", "type": ["null","string"],"default":null},
+    {"name": "devices", "type":["null",{"type": "array","items":{"type":"map","values":"string"}}], "default":null}
+  ]
+}
