@@ -2,7 +2,7 @@
  "type": "record",
  "name": "Response",
  "fields": [
-     {"name": "numResults", "type": "int"},
+     {"name": "numResults", "type": "int", "default": -1},
      {"name": "results", "type": { "type": "array", "items": "bytes"}}
  ]
 }

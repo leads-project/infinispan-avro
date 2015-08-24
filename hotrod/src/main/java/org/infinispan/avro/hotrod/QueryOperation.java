@@ -70,7 +70,7 @@ public class QueryOperation extends RetryOnFailureOperation<Response> {
    @Override
    protected Response executeOperation(Transport transport) {
       HeaderParams params = writeHeader(transport, QUERY_REQUEST);
-      Request queryRequest = new Request();
+      Request queryRequest = Request.newBuilder().build();
       queryRequest.setJpqlString(remoteQuery.getJpqlString());
       queryRequest.setSchemaName(remoteQuery.schemaName.getFullName());
       queryRequest.setStartOffset(remoteQuery.getStartOffset());

@@ -68,7 +68,7 @@ public class MultiHotRodQueryTest extends MultiHotRodServersTest {
             .build();
       List<Employee> list = query.list();
       assertNotNull(list);
-      assertEquals(2, list.size());
+      assertEquals(1, list.size());
 
    }
 

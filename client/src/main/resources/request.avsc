@@ -2,10 +2,10 @@
  "type": "record",
  "name": "Request",
  "fields": [
-     {"name": "jpqlString", "type": "string"},
-     {"name": "schemaName", "type": "string"},
-     {"name": "startOffset",  "type": "long"},
-     {"name": "maxResult", "type": "int"},
-     {"name": "local", "type": "boolean", "default": "true"}
+     {"name": "jpqlString", "type": "string", "default": ""},
+     {"name": "schemaName", "type": "string", "default": ""},
+     {"name": "startOffset",  "type": "long", "default": 0},
+     {"name": "maxResult", "type": "int", "default": -1},
+     {"name": "local", "type": "boolean", "default": true}
       ]
 }
