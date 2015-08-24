@@ -9,6 +9,6 @@ public class RemoteQueryMetadataFileFinder implements ModuleMetadataFileFinder {
 
    @Override
    public String getMetadataFilename() {
-      return "infinispan-avro-support-server-component-metadata.dat";
+      return "infinispan-avro-server-component-metadata.dat";
    }
 }
