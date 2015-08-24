@@ -75,7 +75,6 @@ public class QueryOperation extends RetryOnFailureOperation<Response> {
       queryRequest.setSchemaName(remoteQuery.schemaName.getFullName());
       queryRequest.setStartOffset(remoteQuery.getStartOffset());
       queryRequest.setMaxResult(remoteQuery.getMaxResults());
-      queryRequest.setLocal(true);
 
       try {
 
