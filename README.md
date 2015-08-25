@@ -5,9 +5,6 @@ This project offers an [Infinispan](http://infinspan.org) support for [Apache Av
 
 This project is also intended to be used in conjunction with the Infinispan support for [Apache Gora](https://github.com/leads-project/gora-infinispan), in order to execute Hadoop map-reduce tasks on top of Infinispan.
 
-### Requirements
-infinispan-8.0.0-SNAPSHOT
-
 ### Installation 
 This project is based upon Maven. It requires to install first the latest snapshot version of Infinispan, available at the following [address](https://github.com/infinispan/infinispan).
 
