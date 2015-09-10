@@ -4,6 +4,8 @@ import org.apache.avro.Schema;
 import org.infinispan.avro.client.Response;
 import org.infinispan.client.hotrod.impl.RemoteCacheImpl;
 import org.infinispan.client.hotrod.impl.operations.OperationsFactory;
+import org.infinispan.client.hotrod.logging.Log;
+import org.infinispan.client.hotrod.logging.LogFactory;
 import org.infinispan.query.dsl.Query;
 
 import java.io.IOException;
@@ -11,11 +13,14 @@ import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Pierre Sutra
  */
 public class RemoteQuery implements Query, Cloneable {
+
+   private static final Log log = LogFactory.getLog(RemoteQuery.class);
 
    protected RemoteCacheImpl cache;
    protected String jpqlString;
@@ -73,6 +78,18 @@ public class RemoteQuery implements Query, Cloneable {
       }
       numResults = response.getNumResults();
       return results;
+   }
+
+   @Override
+   public Query setParameter(String s, Object o) {
+      log.warn("Unsupported operation.");
+      return this;
+   }
+
+   @Override
+   public Query setParameters(Map<String, Object> map) {
+      log.warn("Unsupported operation.");
+      return this;
    }
 
    @Override
