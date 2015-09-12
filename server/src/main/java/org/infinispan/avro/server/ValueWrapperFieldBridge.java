@@ -211,7 +211,7 @@ public class ValueWrapperFieldBridge implements TwoWayFieldBridge{
       case BOOLEAN:
          return new TwoWayString2FieldBridgeAdaptor(StringBridge.INSTANCE);
       }
-      throw new CacheException("Unable to find "+path+" having type "+type);
+      throw new CacheException("Unable to find "+Arrays.toString(path)+" having type "+type);
    }
 
    public static class TwoWayArrayBridge extends ArrayBridge implements TwoWayFieldBridge {
