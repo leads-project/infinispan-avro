@@ -1,23 +1,23 @@
 package org.infinispan.client.hotrod.impl.operations;
 
-      import net.jcip.annotations.Immutable;
+import net.jcip.annotations.Immutable;
 
-      import org.infinispan.client.hotrod.CacheTopologyInfo;
-      import org.infinispan.client.hotrod.Flag;
-      import org.infinispan.client.hotrod.RemoteCacheManager;
-      import org.infinispan.client.hotrod.event.ClientListenerNotifier;
-      import org.infinispan.client.hotrod.impl.protocol.Codec;
-      import org.infinispan.client.hotrod.impl.protocol.HotRodConstants;
-      import org.infinispan.client.hotrod.impl.query.RemoteQuery;
-      import org.infinispan.client.hotrod.impl.transport.Transport;
-      import org.infinispan.client.hotrod.impl.transport.TransportFactory;
+import org.infinispan.client.hotrod.CacheTopologyInfo;
+import org.infinispan.client.hotrod.Flag;
+import org.infinispan.client.hotrod.RemoteCacheManager;
+import org.infinispan.client.hotrod.event.ClientListenerNotifier;
+import org.infinispan.client.hotrod.impl.protocol.Codec;
+import org.infinispan.client.hotrod.impl.protocol.HotRodConstants;
+import org.infinispan.client.hotrod.impl.query.RemoteQuery;
+import org.infinispan.client.hotrod.impl.transport.Transport;
+import org.infinispan.client.hotrod.impl.transport.TransportFactory;
 
-      import java.util.ArrayList;
-      import java.util.List;
-      import java.util.Map;
-      import java.util.Set;
-      import java.util.concurrent.TimeUnit;
-      import java.util.concurrent.atomic.AtomicInteger;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Factory for {@link org.infinispan.client.hotrod.impl.operations.HotRodOperation} objects.
@@ -257,11 +257,14 @@ public class OperationsFactory implements HotRodConstants {
       return new IterationNextOperation(codec, flags(), cacheNameBytes, topologyId, iterationId, transport);
    }
 
-   public QueryOperation newAvroQueryOperation(RemoteQuery remoteQuery) {
-      return new QueryOperation(
+   public org.infinispan.avro.hotrod.QueryOperation newAvroQueryOperation(org.infinispan.avro.hotrod.RemoteQuery remoteQuery) {
+      return new org.infinispan.avro.hotrod.QueryOperation(
             codec, transportFactory, cacheNameBytes, topologyId, flags(), remoteQuery);
    }
 
+   public TransportFactory getTransportFactory() {
+      return transportFactory;
+   }
 }
 
 
