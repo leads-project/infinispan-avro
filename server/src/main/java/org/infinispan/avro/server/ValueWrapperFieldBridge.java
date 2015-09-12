@@ -191,6 +191,7 @@ public class ValueWrapperFieldBridge implements TwoWayFieldBridge{
                      field.schema(),
                      subPath);
          }
+         break;
       case MAP:
          Schema subSchema = schema.getValueType();
          return retrieveFieldBridge(
