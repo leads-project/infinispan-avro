@@ -1,23 +1,23 @@
 package org.infinispan.client.hotrod.impl.operations;
 
-import net.jcip.annotations.Immutable;
-import org.infinispan.avro.hotrod.QueryOperation;
-import org.infinispan.avro.hotrod.RemoteQuery;
-import org.infinispan.client.hotrod.CacheTopologyInfo;
-import org.infinispan.client.hotrod.Flag;
-import org.infinispan.client.hotrod.RemoteCacheManager;
-import org.infinispan.client.hotrod.event.ClientListenerNotifier;
-import org.infinispan.client.hotrod.impl.protocol.Codec;
-import org.infinispan.client.hotrod.impl.protocol.HotRodConstants;
-import org.infinispan.client.hotrod.impl.transport.Transport;
-import org.infinispan.client.hotrod.impl.transport.TransportFactory;
+      import net.jcip.annotations.Immutable;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
+      import org.infinispan.client.hotrod.CacheTopologyInfo;
+      import org.infinispan.client.hotrod.Flag;
+      import org.infinispan.client.hotrod.RemoteCacheManager;
+      import org.infinispan.client.hotrod.event.ClientListenerNotifier;
+      import org.infinispan.client.hotrod.impl.protocol.Codec;
+      import org.infinispan.client.hotrod.impl.protocol.HotRodConstants;
+      import org.infinispan.client.hotrod.impl.query.RemoteQuery;
+      import org.infinispan.client.hotrod.impl.transport.Transport;
+      import org.infinispan.client.hotrod.impl.transport.TransportFactory;
+
+      import java.util.ArrayList;
+      import java.util.List;
+      import java.util.Map;
+      import java.util.Set;
+      import java.util.concurrent.TimeUnit;
+      import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Factory for {@link org.infinispan.client.hotrod.impl.operations.HotRodOperation} objects.
@@ -57,10 +57,6 @@ public class OperationsFactory implements HotRodConstants {
 
    public ClientListenerNotifier getListenerNotifier() {
       return listenerNotifier;
-   }
-
-   public TransportFactory getTransportFactory(){
-      return transportFactory;
    }
 
    public byte[] getCacheName() {
@@ -197,8 +193,8 @@ public class OperationsFactory implements HotRodConstants {
             codec, transportFactory, cacheNameBytes, topologyId, flags());
    }
 
-   public org.infinispan.client.hotrod.impl.operations.QueryOperation newQueryOperation(org.infinispan.client.hotrod.impl.query.RemoteQuery remoteQuery) {
-      return new org.infinispan.client.hotrod.impl.operations.QueryOperation(
+   public QueryOperation newQueryOperation(RemoteQuery remoteQuery) {
+      return new QueryOperation(
             codec, transportFactory, cacheNameBytes, topologyId, flags(), remoteQuery);
    }
 
@@ -210,7 +206,7 @@ public class OperationsFactory implements HotRodConstants {
       return new ExecuteOperation(codec, transportFactory, cacheNameBytes, topologyId, flags(), taskName, marshalledParams);
    }
 
-   private Flag[] flags() {
+   public Flag[] flags() {
       List<Flag> flags = this.flagsMap.get();
       this.flagsMap.remove();
       if (forceReturnValue) {
@@ -238,7 +234,11 @@ public class OperationsFactory implements HotRodConstants {
       }
       for(Flag flag : flags)
          list.add(flag);
+   }
 
+   public boolean hasFlag(Flag flag) {
+      List<Flag> list = this.flagsMap.get();
+      return list != null && list.contains(flag);
    }
 
    public CacheTopologyInfo getCacheTopologyInfo() {
@@ -263,3 +263,6 @@ public class OperationsFactory implements HotRodConstants {
    }
 
 }
+
+
+
