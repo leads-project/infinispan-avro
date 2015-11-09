@@ -12,7 +12,7 @@ import java.util.Set;
 /**
  * @author Pierre Sutra
  */
-public class RemoteValueWrapperInterceptor<K,V> extends BaseTypeConverterInterceptor {
+public class RemoteValueWrapperInterceptor<K,V> extends BaseTypeConverterInterceptor<K,V> {
 
    private final ValueWrapperTypeConverter avroTypeConverter = new ValueWrapperTypeConverter();
 
