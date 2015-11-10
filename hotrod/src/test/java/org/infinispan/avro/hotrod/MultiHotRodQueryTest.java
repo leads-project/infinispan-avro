@@ -5,6 +5,9 @@ import org.infinispan.avro.client.Marshaller;
 import org.infinispan.avro.client.Support;
 import org.infinispan.client.hotrod.RemoteCache;
 import org.infinispan.client.hotrod.RemoteCacheManager;
+import org.infinispan.client.hotrod.annotation.ClientCacheEntryCreated;
+import org.infinispan.client.hotrod.annotation.ClientListener;
+import org.infinispan.client.hotrod.event.ClientCacheEntryCreatedEvent;
 import org.infinispan.client.hotrod.test.MultiHotRodServersTest;
 import org.infinispan.configuration.cache.CacheMode;
 import org.infinispan.configuration.cache.ConfigurationBuilder;
@@ -36,7 +39,6 @@ public class MultiHotRodQueryTest extends MultiHotRodServersTest {
             .addProperty("lucene_version", "LUCENE_CURRENT");
 
       createHotRodServers(2, builder);
-
       remoteCache0 = client(0).getCache();
       remoteCache1 = client(1).getCache();
 
@@ -50,6 +52,7 @@ public class MultiHotRodQueryTest extends MultiHotRodServersTest {
    protected RemoteCacheManager createClient(int i) {
       org.infinispan.client.hotrod.configuration.ConfigurationBuilder clientBuilder
             = new org.infinispan.client.hotrod.configuration.ConfigurationBuilder();
+      clientBuilder.pingOnStartup(false);
       clientBuilder.addServer().host(server(i).getAddress().host()).port(server(i).getAddress().port());
       clientBuilder.marshaller(new Marshaller<Employee>(Employee.class));
       return new RemoteCacheManager(clientBuilder.build());
@@ -72,6 +75,15 @@ public class MultiHotRodQueryTest extends MultiHotRodServersTest {
 
    }
 
+   @Test(enabled = true)
+   public void testListener() throws Exception{
+      DummyListener listener = new DummyListener();
+      remoteCache0.addClientListener(listener);
+      remoteCache0.put(3, createEmployee1());
+      Thread.sleep(500);
+      assertEquals(listener.creationCount, 1);
+   }
+
    @Override
    protected org.infinispan.client.hotrod.configuration.ConfigurationBuilder createHotRodClientConfigurationBuilder(int serverPort) {
       org.infinispan.client.hotrod.configuration.ConfigurationBuilder clientBuilder = new org.infinispan.client.hotrod.configuration.ConfigurationBuilder();
@@ -81,6 +93,18 @@ public class MultiHotRodQueryTest extends MultiHotRodServersTest {
             .pingOnStartup(false);
       clientBuilder.marshaller(new Marshaller<>(Employee.class));
       return clientBuilder;
+   }
+
+
+   @ClientListener
+   public static class DummyListener{
+
+      int creationCount = 0;
+
+      @ClientCacheEntryCreated
+      public synchronized void dummyHandler(ClientCacheEntryCreatedEvent event){
+         creationCount++;
+      }
    }
 
 }

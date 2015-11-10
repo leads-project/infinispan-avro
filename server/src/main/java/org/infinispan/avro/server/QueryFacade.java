@@ -8,13 +8,11 @@ import org.hibernate.hql.QueryParser;
 import org.hibernate.hql.ast.spi.EntityNamesResolver;
 import org.hibernate.hql.lucene.LuceneProcessingChain;
 import org.hibernate.hql.lucene.LuceneQueryParsingResult;
-import org.hibernate.hql.lucene.spi.FieldBridgeProvider;
-import org.hibernate.search.bridge.FieldBridge;
 import org.hibernate.search.spi.SearchIntegrator;
 import org.infinispan.AdvancedCache;
-import org.infinispan.avro.client.SpecificMarshaller;
 import org.infinispan.avro.client.Request;
 import org.infinispan.avro.client.Response;
+import org.infinispan.avro.client.SpecificMarshaller;
 import org.infinispan.commons.logging.Log;
 import org.infinispan.query.CacheQuery;
 import org.infinispan.query.Search;
@@ -54,23 +52,15 @@ public class QueryFacade implements org.infinispan.server.core.QueryFacade {
          SearchIntegrator searchFactory = sm.getSearchFactory();
          QueryParser qp = new QueryParser();
 
-         EntityNamesResolver resolver = new EntityNamesResolver() {
-            @Override
-            public Class<?> getClassFromName(String s) {
-               if (s.equals(GenericData.Record.class.getName()))
-                  return GenericData.Record.class;
-               return null;
-            }
+         EntityNamesResolver resolver = s -> {
+            if (s.equals(GenericData.Record.class.getName()))
+               return GenericData.Record.class;
+            return null;
          };
 
          LuceneProcessingChain processingChain
                = new LuceneProcessingChain.Builder(searchFactory,resolver).buildProcessingChainForDynamicEntities(
-               new FieldBridgeProvider() {
-                  @Override
-                  public FieldBridge getFieldBridge(String entityName, String fieldName) {
-                     return ValueWrapperFieldBridge.retrieveFieldBridge(fieldName, schema);
-                  }
-               });
+               (entityName, fieldName) -> ValueWrapperFieldBridge.retrieveFieldBridge(fieldName, schema));
 
          LuceneQueryParsingResult parsingResult = qp.parseQuery(request.getJpqlString().toString(), processingChain);
          Query q = parsingResult.getQuery();

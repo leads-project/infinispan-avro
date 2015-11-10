@@ -46,6 +46,7 @@ public class AvroWrapperIndexingTest extends SingleCacheManagerTest {
             .addProperty("default.directory_provider", "ram")
             .addProperty("lucene_version", "LUCENE_CURRENT");
       cfg.validate();
+      cfg.compatibility().enable();
       
       Configuration configuration = cfg.build();
       assert cfg.clustering().cacheMode() == CacheMode.LOCAL;
