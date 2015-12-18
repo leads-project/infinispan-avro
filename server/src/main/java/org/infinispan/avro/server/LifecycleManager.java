@@ -55,7 +55,9 @@ public class LifecycleManager extends AbstractModuleLifecycle {
    @Override
    public void cacheStarted(ComponentRegistry cr, String cacheName) {
       Configuration configuration = cr.getComponent(Configuration.class);
-      boolean remoteValueWrappingEnabled = configuration.indexing().index().isEnabled() && !configuration.compatibility().enabled();
+      boolean remoteValueWrappingEnabled =
+            configuration.indexing().index().isEnabled()
+                  && !configuration.compatibility().enabled();
       if (!remoteValueWrappingEnabled) {
          if (verifyChainContainsInterceptor(cr)) {
             throw new IllegalStateException("It was NOT expected to find org.infinispan.avro.server.Interceptor "

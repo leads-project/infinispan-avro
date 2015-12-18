@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.hibernate:hibernate-search-engine:tests:5.5.0.CR1">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-search-engine/5.5.0.CR1/hibernate-search-engine-5.5.0.CR1-tests.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-search-engine/5.5.0.CR1/hibernate-search-engine-5.5.0.CR1-test-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-search-engine/5.5.0.CR1/hibernate-search-engine-5.5.0.CR1-test-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

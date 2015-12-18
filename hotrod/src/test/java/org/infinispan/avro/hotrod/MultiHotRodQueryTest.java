@@ -31,14 +31,18 @@ public class MultiHotRodQueryTest extends MultiHotRodServersTest {
 
    protected RemoteCache<Integer, Employee> remoteCache0, remoteCache1;
 
+   protected int numberOfHotRodServers() {
+      return 2;
+   }
+
    @Override
    protected void createCacheManagers() throws Throwable {
       ConfigurationBuilder builder = hotRodCacheConfiguration(getDefaultClusteredCacheConfig(CacheMode.REPL_SYNC, false));
       builder.indexing().enable()
             .addProperty("default.directory_provider", "ram")
             .addProperty("lucene_version", "LUCENE_CURRENT");
+      createHotRodServers(numberOfHotRodServers(), builder);
 
-      createHotRodServers(2, builder);
       remoteCache0 = client(0).getCache();
       remoteCache1 = client(1).getCache();
 
