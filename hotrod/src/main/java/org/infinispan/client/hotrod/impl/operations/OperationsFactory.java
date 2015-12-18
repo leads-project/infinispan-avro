@@ -1,8 +1,6 @@
 package org.infinispan.client.hotrod.impl.operations;
 
 import net.jcip.annotations.Immutable;
-
-import org.infinispan.client.hotrod.CacheTopologyInfo;
 import org.infinispan.client.hotrod.Flag;
 import org.infinispan.client.hotrod.RemoteCacheManager;
 import org.infinispan.client.hotrod.event.ClientListenerNotifier;
@@ -16,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -45,8 +42,8 @@ public class OperationsFactory implements HotRodConstants {
    private final ClientListenerNotifier listenerNotifier;
 
    public OperationsFactory(TransportFactory transportFactory, String cacheName,
-         AtomicInteger topologyId, boolean forceReturnValue, Codec codec,
-         ClientListenerNotifier listenerNotifier) {
+                            AtomicInteger topologyId, boolean forceReturnValue, Codec codec,
+                            ClientListenerNotifier listenerNotifier) {
       this.transportFactory = transportFactory;
       this.cacheNameBytes = RemoteCacheManager.cacheNameBytes(cacheName);
       this.topologyId = topologyId;
@@ -84,10 +81,10 @@ public class OperationsFactory implements HotRodConstants {
    }
 
    public ReplaceIfUnmodifiedOperation newReplaceIfUnmodifiedOperation(byte[] key,
-         byte[] value, long lifespan, TimeUnit lifespanTimeUnit, long maxIdle, TimeUnit maxIdleTimeUnit, long version) {
+            byte[] value, int lifespanSeconds, int maxIdleTimeSeconds, long version) {
       return new ReplaceIfUnmodifiedOperation(
             codec, transportFactory, key, cacheNameBytes, topologyId, flags(),
-            value, lifespan, lifespanTimeUnit, maxIdle, maxIdleTimeUnit, version);
+            value, lifespanSeconds, maxIdleTimeSeconds, version);
    }
 
    public GetWithVersionOperation newGetWithVersionOperation(byte[] key) {
@@ -106,31 +103,31 @@ public class OperationsFactory implements HotRodConstants {
    }
 
    public PutOperation newPutKeyValueOperation(byte[] key, byte[] value,
-         long lifespan, TimeUnit lifespanTimeUnit, long maxIdle, TimeUnit maxIdleTimeUnit) {
+            int lifespanSecs, int maxIdleSecs) {
       return new PutOperation(
             codec, transportFactory, key, cacheNameBytes, topologyId, flags(),
-            value, lifespan, lifespanTimeUnit, maxIdle, maxIdleTimeUnit);
+            value, lifespanSecs, maxIdleSecs);
    }
 
    public PutAllOperation newPutAllOperation(Map<byte[], byte[]> map,
-         long lifespan, TimeUnit lifespanTimeUnit, long maxIdle, TimeUnit maxIdleTimeUnit) {
+         int lifespanSecs, int maxIdleSecs) {
       return new PutAllOperation(
             codec, transportFactory, map, cacheNameBytes, topologyId, flags(),
-            lifespan, lifespanTimeUnit, maxIdle, maxIdleTimeUnit);
+            lifespanSecs, maxIdleSecs);
    }
 
    public PutIfAbsentOperation newPutIfAbsentOperation(byte[] key, byte[] value,
-         long lifespan, TimeUnit lifespanUnit, long maxIdleTime, TimeUnit maxIdleTimeUnit) {
+            int lifespanSecs, int maxIdleSecs) {
       return new PutIfAbsentOperation(
             codec, transportFactory, key, cacheNameBytes, topologyId, flags(),
-            value, lifespan, lifespanUnit, maxIdleTime, maxIdleTimeUnit);
+            value, lifespanSecs, maxIdleSecs);
    }
 
    public ReplaceOperation newReplaceOperation(byte[] key, byte[] values,
-         long lifespan, TimeUnit lifespanTimeUnit, long maxIdle, TimeUnit maxIdleTimeUnit) {
+            int lifespanSecs, int maxIdleSecs) {
       return new ReplaceOperation(
             codec, transportFactory, key, cacheNameBytes, topologyId, flags(),
-            values, lifespan, lifespanTimeUnit, maxIdle, maxIdleTimeUnit);
+            values, lifespanSecs, maxIdleSecs);
    }
 
    public ContainsKeyOperation newContainsKeyOperation(byte[] key) {
@@ -150,7 +147,7 @@ public class OperationsFactory implements HotRodConstants {
 
    public BulkGetKeysOperation newBulkGetKeysOperation(int scope) {
       return new BulkGetKeysOperation(
-            codec, transportFactory, cacheNameBytes, topologyId, flags(), scope);
+         codec, transportFactory, cacheNameBytes, topologyId, flags(), scope);
    }
 
    public AddClientListenerOperation newAddClientListenerOperation(Object listener) {
@@ -201,12 +198,12 @@ public class OperationsFactory implements HotRodConstants {
    public SizeOperation newSizeOperation() {
       return new SizeOperation(codec, transportFactory, cacheNameBytes, topologyId, flags());
    }
-
+   
    public ExecuteOperation newExecuteOperation(String taskName, Map<String, byte[]> marshalledParams) {
-      return new ExecuteOperation(codec, transportFactory, cacheNameBytes, topologyId, flags(), taskName, marshalledParams);
-   }
+		return new ExecuteOperation(codec, transportFactory, cacheNameBytes, topologyId, flags(), taskName, marshalledParams);
+	}
 
-   public Flag[] flags() {
+   private Flag[] flags() {
       List<Flag> flags = this.flagsMap.get();
       this.flagsMap.remove();
       if (forceReturnValue) {
@@ -236,26 +233,6 @@ public class OperationsFactory implements HotRodConstants {
          list.add(flag);
    }
 
-   public boolean hasFlag(Flag flag) {
-      List<Flag> list = this.flagsMap.get();
-      return list != null && list.contains(flag);
-   }
-
-   public CacheTopologyInfo getCacheTopologyInfo() {
-      return transportFactory.getCacheTopologyInfo(cacheNameBytes);
-   }
-
-   public IterationStartOperation newIterationStartOperation(String filterConverterFactory, Set<Integer> segments, int batchSize) {
-      return new IterationStartOperation(codec, flags(), cacheNameBytes, topologyId, filterConverterFactory, segments, batchSize, transportFactory);
-   }
-
-   public IterationEndOperation newIterationEndOperation(String iterationId, Transport transport) {
-      return new IterationEndOperation(codec, flags(), cacheNameBytes, topologyId, iterationId, transportFactory, transport);
-   }
-
-   public IterationNextOperation newIterationNextOperation(String iterationId, Transport transport) {
-      return new IterationNextOperation(codec, flags(), cacheNameBytes, topologyId, iterationId, transport);
-   }
 
    public org.infinispan.avro.hotrod.QueryOperation newAvroQueryOperation(org.infinispan.avro.hotrod.RemoteQuery remoteQuery) {
       return new org.infinispan.avro.hotrod.QueryOperation(
@@ -265,7 +242,5 @@ public class OperationsFactory implements HotRodConstants {
    public TransportFactory getTransportFactory() {
       return transportFactory;
    }
+
 }
-
-
-

@@ -13,7 +13,6 @@ import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author Pierre Sutra
@@ -78,18 +77,6 @@ public class RemoteQuery implements Query, Cloneable {
       }
       numResults = response.getNumResults();
       return results;
-   }
-
-   @Override
-   public Query setParameter(String s, Object o) {
-      log.warn("Unsupported operation.");
-      return this;
-   }
-
-   @Override
-   public Query setParameters(Map<String, Object> map) {
-      log.warn("Unsupported operation.");
-      return this;
    }
 
    @Override
