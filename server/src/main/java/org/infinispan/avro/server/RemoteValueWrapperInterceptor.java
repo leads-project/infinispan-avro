@@ -14,9 +14,8 @@ import java.util.Set;
  */
 public class RemoteValueWrapperInterceptor<K,V> extends BaseTypeConverterInterceptor {
 
-   private final ValueWrapperTypeConverter avroTypeConverter = new ValueWrapperTypeConverter();
-
-   private final PassThroughTypeConverter passThroughTypeConverter = new PassThroughTypeConverter();
+   private static final ValueWrapperTypeConverter avroTypeConverter = new ValueWrapperTypeConverter();
+   private static final PassThroughTypeConverter passThroughTypeConverter = new PassThroughTypeConverter();
 
    @Override
    protected TypeConverter<Object, Object, Object, Object> determineTypeConverter(Set<Flag> flags) {
@@ -63,7 +62,7 @@ public class RemoteValueWrapperInterceptor<K,V> extends BaseTypeConverterInterce
     */
    private static class ValueWrapperTypeConverter extends PassThroughTypeConverter {
 
-      Externalizer externalizer = new Externalizer();
+      Externalizer externalizer = Externalizer.getInstance();
 
       @Override
       public Object boxValue(Object value) {

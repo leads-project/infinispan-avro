@@ -63,7 +63,7 @@ public abstract class AbstractMarshaller extends AbstractExternalizer implements
          encoder.flush();
       } else if (o instanceof Schema) {
          oos.write(SCHEMA);
-         oos.writeObject(o.toString());
+         oos.writeUTF(o.toString());
       } else {
          oos.write(OTHER);
          oos.writeObject(o);
@@ -100,7 +100,7 @@ public abstract class AbstractMarshaller extends AbstractExternalizer implements
             DatumReader reader = reader(schemaName);
             return reader.read(null, decoder);
          case SCHEMA:
-            return Schema.parse((String) ois.readObject());
+            return Schema.parse(ois.readUTF());
          case OTHER:
             return ois.readObject();
          }

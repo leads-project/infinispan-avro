@@ -56,13 +56,10 @@ public class MetadataManager {
          if (cacheMode.equals(CacheMode.REPL_SYNC)) cfg.clustering().stateTransfer().awaitInitialTransfer(true);
          cacheManager.defineConfiguration(Support.AVRO_METADATA_CACHE_NAME, cfg.build());
          this.cacheManager = cacheManager;
-         this.marshaller= new Externalizer();
+         this.marshaller= Externalizer.getInstance();
          this.knownSchemas = new ConcurrentHashMap<>();
          knownSchemas.put(Request.getClassSchema().getFullName(), Request.getClassSchema());
          knownSchemas.put(Response.getClassSchema().getFullName(), Response.getClassSchema());
-      } else {
-         throw new IllegalStateException("A configuration for "+ Support.AVRO_METADATA_CACHE_NAME
-               +", but it should not be defined by the user.");
       }
    }
 

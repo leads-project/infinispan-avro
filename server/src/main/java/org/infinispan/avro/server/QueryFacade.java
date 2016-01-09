@@ -12,7 +12,7 @@ import org.hibernate.hql.lucene.spi.FieldBridgeProvider;
 import org.hibernate.search.bridge.FieldBridge;
 import org.hibernate.search.spi.SearchIntegrator;
 import org.infinispan.AdvancedCache;
-import org.infinispan.avro.client.SpecificMarshaller;
+import org.infinispan.avro.client.Marshaller;
 import org.infinispan.avro.client.Request;
 import org.infinispan.avro.client.Response;
 import org.infinispan.commons.logging.Log;
@@ -33,10 +33,10 @@ public class QueryFacade implements org.infinispan.server.core.QueryFacade {
 
    private static final Log log = LogFactory.getLog(QueryFacade.class, Log.class);
 
-   private SpecificMarshaller<Request> requestAvroMarshaller= new SpecificMarshaller<>(Request.class);
-   private SpecificMarshaller<Response> responseAvroMarshaller = new SpecificMarshaller<>(Response.class);
+   private Marshaller<Request> requestAvroMarshaller= new Marshaller<>(Request.class);
+   private Marshaller<Response> responseAvroMarshaller = new Marshaller<>(Response.class);
 
-   private Externalizer genericAvroMarshaller = new Externalizer();
+   private Externalizer genericAvroMarshaller = Externalizer.getInstance();
 
    @Override
    public byte[] query(AdvancedCache<byte[], byte[]> cache, byte[] query) {

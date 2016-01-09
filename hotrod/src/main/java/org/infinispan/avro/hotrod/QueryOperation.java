@@ -1,8 +1,8 @@
 package org.infinispan.avro.hotrod;
 
-import org.infinispan.avro.client.Marshaller;
 import org.infinispan.avro.client.Request;
 import org.infinispan.avro.client.Response;
+import org.infinispan.avro.client.Marshaller;
 import org.infinispan.client.hotrod.Flag;
 import org.infinispan.client.hotrod.impl.operations.RetryOnFailureOperation;
 import org.infinispan.client.hotrod.impl.protocol.Codec;

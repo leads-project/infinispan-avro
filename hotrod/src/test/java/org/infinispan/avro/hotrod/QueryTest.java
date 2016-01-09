@@ -65,7 +65,7 @@ public class QueryTest extends SingleCacheManagerTest {
       org.infinispan.client.hotrod.configuration.ConfigurationBuilder clientBuilder =
             new org.infinispan.client.hotrod.configuration.ConfigurationBuilder();
       clientBuilder.addServer().host(hotRodServer.getAddress().host()).port(hotRodServer.getAddress().port());
-      clientBuilder.marshaller(new Marshaller<Employee>(Employee.class));
+      clientBuilder.marshaller(new Marshaller<>(Employee.class));
       remoteCacheManager = new RemoteCacheManager(clientBuilder.build());
       employeeCache = remoteCacheManager.getCache(TEST_CACHE_NAME);
       employeeQF = Search.getQueryFactory(employeeCache);

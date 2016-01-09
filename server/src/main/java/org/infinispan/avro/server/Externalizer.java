@@ -14,7 +14,14 @@ import java.io.Serializable;
   */
 public class Externalizer extends AbstractMarshaller {
 
-   public Externalizer(){}
+   private static Externalizer instance = new Externalizer();
+   public static Externalizer getInstance() {
+      return instance;
+   }
+
+
+   private Externalizer(){}
+
 
    // Others
 

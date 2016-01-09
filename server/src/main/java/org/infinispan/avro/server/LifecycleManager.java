@@ -7,7 +7,6 @@ import org.infinispan.configuration.cache.*;
 import org.infinispan.configuration.global.GlobalConfiguration;
 import org.infinispan.factories.ComponentRegistry;
 import org.infinispan.factories.GlobalComponentRegistry;
-import org.infinispan.interceptors.BatchingInterceptor;
 import org.infinispan.interceptors.InterceptorChain;
 import org.infinispan.interceptors.InvocationContextInterceptor;
 import org.infinispan.interceptors.compat.BaseTypeConverterInterceptor;
@@ -28,7 +27,7 @@ public class LifecycleManager extends AbstractModuleLifecycle {
    @Override
    public void cacheManagerStarting(GlobalComponentRegistry gcr, GlobalConfiguration globalCfg) {
       Map<Integer, AdvancedExternalizer<?>> externalizerMap = globalCfg.serialization().advancedExternalizers();
-      externalizerMap.put(ExternalizerIds.AVRO_VALUE_WRAPPER, new Externalizer());
+      externalizerMap.put(ExternalizerIds.AVRO_VALUE_WRAPPER, Externalizer.getInstance());
    }
 
    @Override
@@ -67,17 +66,13 @@ public class LifecycleManager extends AbstractModuleLifecycle {
          InterceptorConfigurationBuilder interceptorBuilder = builder.customInterceptors().addInterceptor();
          interceptorBuilder.interceptor(wrapperInterceptor);
 
-         if (cfg.invocationBatching().enabled()) {
-            if (ic != null) ic.addInterceptorAfter(wrapperInterceptor, BatchingInterceptor.class);
-            interceptorBuilder.after(BatchingInterceptor.class);
-         } else {
-            if (ic != null) ic.addInterceptorAfter(wrapperInterceptor, InvocationContextInterceptor.class);
-            interceptorBuilder.after(InvocationContextInterceptor.class);
-         }
+         if (ic != null) ic.addInterceptorAfter(wrapperInterceptor, InvocationContextInterceptor.class);
+         interceptorBuilder.after(InvocationContextInterceptor.class);
+
          if (ic != null) {
             cr.registerComponent(wrapperInterceptor, RemoteValueWrapperInterceptor.class);
-            cr.registerComponent(wrapperInterceptor, wrapperInterceptor.getClass().getName(), true);
          }
+
          cfg.customInterceptors().interceptors(builder.build().customInterceptors().interceptors());
       }
    }
