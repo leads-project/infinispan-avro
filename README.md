@@ -6,10 +6,18 @@ This project offers an [Infinispan](http://infinspan.org) support for [Apache Av
 This project is also intended to be used in conjunction with the Infinispan support for [Apache Gora](https://github.com/leads-project/gora-infinispan), in order to execute Hadoop map-reduce tasks on top of Infinispan.
 
 ### Installation 
-This project is based upon Maven. It requires to install first the latest snapshot version of Infinispan, available at the following [address](https://github.com/infinispan/infinispan).
+This project is based upon Maven and makes use of Infinispan 7.2.5.Final. Below, we explain how to install the Avro support for insfinispan.
+
+```
+git clone https://github.com/leads-project/infinispan-avro.git
+cd infinispan-avro
+mvn clean install -DskipTests
+```
 
 ### Usage
-Storing, retrieving and Querying Avro defined types requires to start HotRod server, enabling the infinispan-avro-server module. Then, the client side should depend on the infinispan-avro-hotorod module. To build an Avro defined type, please refer to the Apache Avro documentation on the [compiler](https://avro.apache.org/docs/1.7.7/gettingstartedjava.html). 
+Storing, retrieving and Querying Avro defined types requires to start a HotRod server, while enabling the infinispan-avro-server module. Then, the client side should use the infinispan-avro-hotorod module to construct its query .
+
+To build an Avro defined type, please refer to the Apache Avro documentation on the [compiler](https://avro.apache.org/docs/1.7.7/gettingstartedjava.html). 
 
 ## Code Sample
 Let Employee be an Avro defined type. The following code illustrates how to store and query Employee instances.
