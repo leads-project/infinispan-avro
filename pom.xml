@@ -86,7 +86,7 @@
             <preparationGoals>install</preparationGoals>
             <mavenExecutorId>forked-path</mavenExecutorId>
             <useReleaseProfile>false</useReleaseProfile>
-            <tagNameFormat>${finalName}-@{project.version}</tagNameFormat>
+            <tagNameFormat>@{project.version}</tagNameFormat>
             <arguments>-Prelease</arguments>
             <autoVersionSubmodules>true</autoVersionSubmodules>
           </configuration>
