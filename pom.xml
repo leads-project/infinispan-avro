@@ -11,6 +11,7 @@
 
     <groupId>org.infinispan</groupId>
     <artifactId>infinispan-avro</artifactId>
+    <version>7.2.5.Final-SNAPSHOT</version>
     <name>Infinispan Avro Support</name>
     <description>Infinispan support for Apache Avro</description>
     <url>https://github.com/leads-project/infinispan-avro</url>
@@ -29,6 +30,8 @@
         <maven-javadoc-plugin.version>2.8.1</maven-javadoc-plugin.version>
         <maven-gpg-plugin.version>1.4</maven-gpg-plugin.version>
         <maven-release-plugin.version>2.5</maven-release-plugin.version>
+        <javac.src.version>1.7</javac.src.version>
+        <javac.target.version>1.7</javac.target.version>
     </properties>
 
     <licenses>
