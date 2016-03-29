@@ -31,6 +31,13 @@
             <version>${version.infinispan}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.infinispan</groupId>
+            <artifactId>infinispan-query-dsl</artifactId>
+            <version>${version.infinispan}</version>
+            <scope>compile</scope>
+        </dependency>
+
         <!-- test -->
 
         <dependency>

@@ -33,6 +33,34 @@
             <version>${version.infinispan}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.infinispan</groupId>
+            <artifactId>infinispan-query</artifactId>
+            <version>${version.infinispan}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-core</artifactId>
+            <version>${lucene-solr.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-search-orm</artifactId>
+            <version>${version.hibernate-search-orm}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate.hql</groupId>
+            <artifactId>hibernate-hql-lucene</artifactId>
+            <version>${version.hibernate-hql}</version>
+            <scope>compile</scope>
+        </dependency>
+
         <!-- test -->
 
         <dependency>
