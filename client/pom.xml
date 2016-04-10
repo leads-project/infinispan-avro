@@ -6,7 +6,8 @@
     <parent>
         <groupId>org.infinispan</groupId>
         <artifactId>infinispan-avro</artifactId>
-        <version>7.2.5.Final</version>
+        <version>7.2.5.Final-SNAPSHOT</version>
+        <relativePath>../</relativePath>
     </parent>
 
     <groupId>org.infinispan</groupId>
@@ -16,6 +17,21 @@
         This module contains the client classes to support the storage and querying
         of Apache Avro objects atop Infinispan.
     </description>
+
+    <dependencies>
+      <dependency>
+        <groupId>org.apache.avro</groupId>
+        <artifactId>avro</artifactId>
+        <version>${version.avro}</version>
+        <scope>compile</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.infinispan</groupId>
+        <artifactId>infinispan-commons</artifactId>
+        <version>${version.infinispan}</version>
+        <scope>compile</scope>
+      </dependency>
+    </dependencies>
 
     <build>
         <plugins>
