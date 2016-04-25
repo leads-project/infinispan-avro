@@ -43,9 +43,14 @@
 
     <developers>
       <developer>
-        <name>otrack</name>
+        <name>Pierre Sutra</name>
         <organization>Télécom SudParis</organization>
         <organizationUrl>https://github.com/otrack</organizationUrl>
+      </developer>
+      <developer>
+        <name>Valerio Schiavoni</name>
+        <organization>University of Neuchatel</organization>
+        <organizationUrl>https://github.com/vschiavoni</organizationUrl>
       </developer>
       <developer>
         <name>Lewis John McGibbney</name>
@@ -59,6 +64,17 @@
       <developerConnection>scm:git:git@github.com:leads-project/infinispan-avro.git</developerConnection>
       <url>git@github.com:leads-project/infinispan-avro.git</url>
     </scm>
+
+    <distributionManagement>
+      <snapshotRepository>
+	<id>ossrh</id>
+	<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      </snapshotRepository>
+      <repository>
+	<id>ossrh</id>
+	<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+      </repository>
+    </distributionManagement>
 
     <build>
       <defaultGoal>install</defaultGoal>
@@ -117,34 +133,6 @@
                   <goal>jar-no-fork</goal>
                 </goals>
                 <configuration>
-                  <archive>
-                    <manifest>
-                      <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                      <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-                    </manifest>
-                    <manifestEntries>
-                      <Implementation-Build>${implementation.build}</Implementation-Build>
-                      <Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
-                      <X-Compile-Source-JDK>${javac.src.version}</X-Compile-Source-JDK>
-                      <X-Compile-Target-JDK>${javac.target.version}</X-Compile-Target-JDK>
-                    </manifestEntries>
-                  </archive>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <version>${maven-javadoc-plugin.version}</version>
-            <executions>
-              <execution>
-                <id>attach-javadocs</id>
-                <goals>
-                  <goal>jar</goal>
-                </goals>
-                <configuration>
-                  <quiet>true</quiet>
                   <archive>
                     <manifest>
                       <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
