@@ -1,87 +1,94 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.infinispan</groupId>
-    <artifactId>infinispan-avro</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <name>Infinispan Avro Support</name>
-    <description>Infinispan support for Apache Avro</description>
-    <url>https://github.com/leads-project/infinispan-avro</url>
+  <groupId>org.infinispan</groupId>
+  <artifactId>infinispan-avro</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <name>Infinispan Avro Support</name>
+  <description>Infinispan support for Apache Avro</description>
+  <url>https://github.com/leads-project/infinispan-avro</url>
 
-    <packaging>pom</packaging>
+  <packaging>pom</packaging>
 
-    <properties>
-        <version.avro>1.7.4</version.avro>
-        <version.infinispan>7.2.5.Final</version.infinispan>
-        <version.hibernate-search-orm>5.6.0.Alpha3</version.hibernate-search-orm>
-        <version.hibernate-hql>1.2.2.Final</version.hibernate-hql>
-        <lucene-solr.version>4.10.3</lucene-solr.version>
-        <maven-deploy-plugin.version>2.5</maven-deploy-plugin.version>
-        <checksum-maven-plugin.version>1.0.1</checksum-maven-plugin.version>
-        <maven-source-plugin.version>2.1.2</maven-source-plugin.version>
-        <maven-javadoc-plugin.version>2.8.1</maven-javadoc-plugin.version>
-        <maven-gpg-plugin.version>1.4</maven-gpg-plugin.version>
-        <maven-release-plugin.version>2.5</maven-release-plugin.version>
-        <javac.source.version>1.7</javac.source.version>
-        <javac.target.version>1.7</javac.target.version>
-	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    </properties>
+  <properties>
+    <version.avro>1.7.4</version.avro>
+    <version.infinispan>7.2.5.Final</version.infinispan>
+    <version.hibernate-search-orm>5.6.0.Alpha3</version.hibernate-search-orm>
+    <version.hibernate-hql>1.2.2.Final</version.hibernate-hql>
+    <lucene-solr.version>4.10.3</lucene-solr.version>
+    <maven-deploy-plugin.version>2.5</maven-deploy-plugin.version>
+    <checksum-maven-plugin.version>1.0.1</checksum-maven-plugin.version>
+    <maven-source-plugin.version>2.1.2</maven-source-plugin.version>
+    <maven-javadoc-plugin.version>2.8.1</maven-javadoc-plugin.version>
+    <maven-gpg-plugin.version>1.4</maven-gpg-plugin.version>
+    <maven-release-plugin.version>2.5</maven-release-plugin.version>
+    <javac.source.version>1.7</javac.source.version>
+    <javac.target.version>1.7</javac.target.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
 
-    <licenses>
-      <license>
-        <name>The Apache License, Version 2.0</name>
-        <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-      </license>
-    </licenses>
+  <licenses>
+    <license>
+      <name>The Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
 
-    <developers>
-      <developer>
-        <name>Pierre Sutra</name>
-        <organization>Télécom SudParis</organization>
-        <organizationUrl>https://github.com/otrack</organizationUrl>
-      </developer>
-      <developer>
-        <name>Valerio Schiavoni</name>
-        <organization>University of Neuchatel</organization>
-        <organizationUrl>https://github.com/vschiavoni</organizationUrl>
-      </developer>
-      <developer>
-        <name>Lewis John McGibbney</name>
-        <email>lewismc@apache.org</email>
-        <organizationUrl>https://github.com/lewismc</organizationUrl>
-      </developer>
-    </developers>
+  <developers>
+    <developer>
+      <name>Pierre Sutra</name>
+      <organization>Télécom SudParis</organization>
+      <organizationUrl>https://github.com/otrack</organizationUrl>
+    </developer>
+    <developer>
+      <name>Valerio Schiavoni</name>
+      <organization>University of Neuchatel</organization>
+      <organizationUrl>https://github.com/vschiavoni</organizationUrl>
+    </developer>
+    <developer>
+      <name>Lewis John McGibbney</name>
+      <email>lewismc@apache.org</email>
+      <organizationUrl>https://github.com/lewismc</organizationUrl>
+    </developer>
+  </developers>
 
-    <scm>
-      <connection>scm:git:git@github.com:leads-project/infinispan-avro.git</connection>
-      <developerConnection>scm:git:git@github.com:leads-project/infinispan-avro.git</developerConnection>
-      <url>git@github.com:leads-project/infinispan-avro.git</url>
-    </scm>
+  <scm>
+    <connection>scm:git:git@github.com:leads-project/infinispan-avro.git</connection>
+    <developerConnection>scm:git:git@github.com:leads-project/infinispan-avro.git</developerConnection>
+    <url>git@github.com:leads-project/infinispan-avro.git</url>
+  </scm>
 
-    <distributionManagement>
-      <snapshotRepository>
-	<id>ossrh-snapshots</id>
-	<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-      </snapshotRepository>
-      <repository>
-	<id>ossrh-releases</id>
-	<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-      </repository>
-    </distributionManagement>
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
 
-    <build>
-      <defaultGoal>install</defaultGoal>
-      <directory>target</directory>
-      <outputDirectory>${basedir}/target/classes</outputDirectory>
-      <finalName>${project.artifactId}-${project.version}</finalName>
-      <testOutputDirectory>${basedir}/target/test-classes</testOutputDirectory>
-      <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
-      <testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
-      <pluginManagement>
-        <plugins>
+  <build>
+    <defaultGoal>install</defaultGoal>
+    <directory>target</directory>
+    <outputDirectory>${basedir}/target/classes</outputDirectory>
+    <finalName>${project.artifactId}-${project.version}</finalName>
+    <testOutputDirectory>${basedir}/target/test-classes</testOutputDirectory>
+    <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+    <testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
+    <pluginManagement>
+      <plugins>
+	<plugin>
+	  <groupId>org.sonatype.plugins</groupId>
+	  <artifactId>nexus-staging-maven-plugin</artifactId>
+	  <version>1.6.3</version>
+	  <extensions>true</extensions>
+	  <configuration>
+            <serverId>ossrh</serverId>
+            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+	  </configuration>
+	</plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-deploy-plugin</artifactId>
@@ -110,10 +117,10 @@
             </dependency>
           </dependencies>
         </plugin>
-        </plugins>
-      </pluginManagement>
-    </build>
-    <profiles>
+      </plugins>
+    </pluginManagement>
+  </build>
+  <profiles>
     <profile>
       <id>release</id>
       <build>
@@ -167,15 +174,15 @@
         </plugins>
       </build>
     </profile>
-    </profiles>
+  </profiles>
 
-    <modules>
-        <module>client</module>
-        <module>server</module>
-        <module>hotrod</module>
-    </modules>
+  <modules>
+    <module>client</module>
+    <module>server</module>
+    <module>hotrod</module>
+  </modules>
 
-    <dependencyManagement>
+  <dependencyManagement>
     <dependencies>
 
       <dependency>
@@ -239,6 +246,6 @@
       </dependency>
 
     </dependencies>
-    </dependencyManagement>
+  </dependencyManagement>
 
 </project>
