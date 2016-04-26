@@ -5,7 +5,7 @@
 
   <groupId>org.infinispan</groupId>
   <artifactId>infinispan-avro</artifactId>
-  <version>1.1-SNAPSHOT</version>
+  <version>1.0.Final-SNAPSHOT</version>
   <name>Infinispan Avro Support</name>
   <description>Infinispan support for Apache Avro</description>
   <url>https://github.com/leads-project/infinispan-avro</url>
