@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.infinispan</groupId>
         <artifactId>infinispan-avro</artifactId>
-	<version>7.2.5.Final-SNAPSHOT</version>
+	<version>1.0-SNAPSHOT</version>
         <relativePath>../</relativePath>
     </parent>
 
@@ -18,7 +18,7 @@
     </description>
 
     <properties>
-        <module.skipComponentMetaDataProcessing>false</module.skipComponentMetaDataProcessing>
+      <module.skipComponentMetaDataProcessing>false</module.skipComponentMetaDataProcessing>
     </properties>
     
     <dependencies>
