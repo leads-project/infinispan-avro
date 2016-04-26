@@ -60,14 +60,7 @@
     <developerConnection>scm:git:git@github.com:leads-project/infinispan-avro.git</developerConnection>
     <url>git@github.com:leads-project/infinispan-avro.git</url>
   </scm>
-
-  <distributionManagement>
-    <snapshotRepository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-    </snapshotRepository>
-  </distributionManagement>
-
+  
   <build>
     <defaultGoal>install</defaultGoal>
     <directory>target</directory>
@@ -86,7 +79,7 @@
 	  <configuration>
             <serverId>ossrh</serverId>
             <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+            <autoReleaseAfterClose>false</autoReleaseAfterClose>
 	  </configuration>
 	</plugin>
         <plugin>
