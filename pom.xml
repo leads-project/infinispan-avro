@@ -5,7 +5,7 @@
 
   <groupId>org.infinispan</groupId>
   <artifactId>infinispan-avro</artifactId>
-  <version>1.0.Final-SNAPSHOT</version>
+  <version>1.0.Final</version>
   <name>Infinispan Avro Support</name>
   <description>Infinispan support for Apache Avro</description>
   <url>https://github.com/leads-project/infinispan-avro</url>
@@ -59,7 +59,7 @@
     <connection>scm:git:git@github.com:leads-project/infinispan-avro.git</connection>
     <developerConnection>scm:git:git@github.com:leads-project/infinispan-avro.git</developerConnection>
     <url>git@github.com:leads-project/infinispan-avro.git</url>
-    <tag>HEAD</tag>
+    <tag>1.0.Final</tag>
   </scm>
 
   <distributionManagement>
