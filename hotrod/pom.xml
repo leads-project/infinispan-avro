@@ -1,147 +1,153 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.infinispan</groupId>
-        <artifactId>infinispan-avro</artifactId>
-	<version>1.0-SNAPSHOT</version>
-        <relativePath>../</relativePath>
-    </parent>
-
+  <parent>
     <groupId>org.infinispan</groupId>
-    <artifactId>infinispan-avro-hotrod</artifactId>
-    <name>Infinispan Avro Support HotRod</name>
-    <description>
-        This module contains the HotRod support for Apache Avro. It requires that the Infinispan server enables
-        querying and storage of Avro objects through the use of the avro-support-server module.
-    </description>
+    <artifactId>infinispan-avro</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <relativePath>../</relativePath>
+  </parent>
 
-    <dependencies>
+  <groupId>org.infinispan</groupId>
+  <artifactId>infinispan-avro-hotrod</artifactId>
+  <name>Infinispan Avro Support HotRod</name>
+  <description>
+    This module contains the HotRod support for Apache Avro. It requires that the Infinispan server enables
+    querying and storage of Avro objects through the use of the avro-support-server module.
+  </description>
 
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>infinispan-avro-client</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.5.1</version>
+        <configuration>
+          <source>${javac.source.version}</source>
+          <target>${javac.target.version}</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 
-        <dependency>
-            <groupId>org.infinispan</groupId>
-            <artifactId>infinispan-server-core</artifactId>
-            <version>${version.infinispan}</version>
-        </dependency>
+  <properties>
+    <version.jcipannotations>1.0</version.jcipannotations>
+    <version.junit>4.11</version.junit>
+  </properties>
+  
+  <dependencies>
 
-        <dependency>
-            <groupId>org.infinispan</groupId>
-            <artifactId>infinispan-commons</artifactId>
-            <version>${version.infinispan}</version>
-            <scope>compile</scope>
-        </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>infinispan-avro-client</artifactId>
+      <version>${project.parent.version}</version>
+    </dependency>
 
-        <dependency>
-            <groupId>org.infinispan</groupId>
-            <artifactId>infinispan-core</artifactId>
-            <version>${version.infinispan}</version>
-            <scope>compile</scope>
-        </dependency>
+    <dependency>
+      <groupId>org.infinispan</groupId>
+      <artifactId>infinispan-server-core</artifactId>
+      <version>${version.infinispan}</version>
+    </dependency>
 
-        <dependency>
-            <groupId>org.infinispan</groupId>
-            <artifactId>infinispan-directory-provider</artifactId>
-            <version>${version.infinispan}</version>
-            <scope>compile</scope>
-        </dependency>
+    <dependency>
+      <groupId>org.infinispan</groupId>
+      <artifactId>infinispan-directory-provider</artifactId>
+      <version>${version.infinispan}</version>
+      <scope>compile</scope>
+    </dependency>
 
-        <dependency>
-            <groupId>org.infinispan</groupId>
-            <artifactId>infinispan-lucene-directory</artifactId>
-            <version>${version.infinispan}</version>
-            <scope>compile</scope>
-        </dependency>
+    <dependency>
+      <groupId>org.infinispan</groupId>
+      <artifactId>infinispan-lucene-directory</artifactId>
+      <version>${version.infinispan}</version>
+      <scope>compile</scope>
+    </dependency>
 
-        <dependency>
-            <groupId>org.infinispan</groupId>
-            <artifactId>infinispan-objectfilter</artifactId>
-            <version>${version.infinispan}</version>
-            <scope>compile</scope>
-        </dependency>
+    <dependency>
+      <groupId>org.infinispan</groupId>
+      <artifactId>infinispan-objectfilter</artifactId>
+      <version>${version.infinispan}</version>
+      <scope>compile</scope>
+    </dependency>
 
-        <dependency>
-            <groupId>org.infinispan</groupId>
-            <artifactId>infinispan-client-hotrod</artifactId>
-            <version>${version.infinispan}</version>
-        </dependency>
+    <dependency>
+      <groupId>org.infinispan</groupId>
+      <artifactId>infinispan-client-hotrod</artifactId>
+      <version>${version.infinispan}</version>
+    </dependency>
 
-        <dependency>
-            <groupId>org.infinispan</groupId>
-            <artifactId>infinispan-query</artifactId>
-            <version>${version.infinispan}</version>
-            <scope>compile</scope>
-        </dependency>
+    <dependency>
+      <groupId>net.jcip</groupId>
+      <artifactId>jcip-annotations</artifactId>
+      <version>${version.jcipannotations}</version>
+      <optional>true</optional>
+    </dependency>
 
-        <dependency>
-            <groupId>org.infinispan</groupId>
-            <artifactId>infinispan-query-dsl</artifactId>
-            <version>${version.infinispan}</version>
-            <scope>compile</scope>
-        </dependency>
+    <!-- test -->
 
-        <!-- test -->
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>6.8.8</version>
+      <scope>test</scope>
+    </dependency>
 
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>6.8.8</version>
-            <scope>test</scope>
-        </dependency>
+    <dependency>
+      <groupId>org.infinispan</groupId>
+      <artifactId>infinispan-avro-server</artifactId>
+      <version>${project.version}</version>
+      <scope>test</scope>
+      <type>test-jar</type>
+    </dependency>
 
-        <dependency>
-            <groupId>org.infinispan</groupId>
-            <artifactId>infinispan-avro-server</artifactId>
-            <version>${project.version}</version>
-            <scope>test</scope>
-            <type>test-jar</type>
-        </dependency>
+    <dependency>
+      <groupId>org.infinispan</groupId>
+      <artifactId>infinispan-avro-server</artifactId>
+      <version>${project.version}</version>
+      <scope>test</scope>
+    </dependency>
 
-        <dependency>
-            <groupId>org.infinispan</groupId>
-            <artifactId>infinispan-avro-server</artifactId>
-            <version>${project.version}</version>
-            <scope>test</scope>
-        </dependency>
+    <dependency>
+      <groupId>org.infinispan</groupId>
+      <artifactId>infinispan-server-hotrod</artifactId>
+      <version>${version.infinispan}</version>
+      <scope>test</scope>
+    </dependency>
 
-        <dependency>
-            <groupId>org.infinispan</groupId>
-            <artifactId>infinispan-server-hotrod</artifactId>
-            <version>${version.infinispan}</version>
-            <scope>test</scope>
-        </dependency>
+    <dependency>
+      <groupId>org.infinispan</groupId>
+      <artifactId>infinispan-core</artifactId>
+      <version>${version.infinispan}</version>
+      <scope>test</scope>
+      <type>test-jar</type>
+    </dependency>
 
-        <dependency>
-            <groupId>org.infinispan</groupId>
-            <artifactId>infinispan-core</artifactId>
-            <version>${version.infinispan}</version>
-            <scope>test</scope>
-            <type>test-jar</type>
-        </dependency>
+    <dependency>
+      <groupId>org.infinispan</groupId>
+      <artifactId>infinispan-server-hotrod</artifactId>
+      <version>${version.infinispan}</version>
+      <scope>test</scope>
+      <type>test-jar</type>
+    </dependency>
 
-        <dependency>
-            <groupId>org.infinispan</groupId>
-            <artifactId>infinispan-server-hotrod</artifactId>
-            <version>${version.infinispan}</version>
-            <scope>test</scope>
-            <type>test-jar</type>
-        </dependency>
+    <dependency>
+      <groupId>org.infinispan</groupId>
+      <artifactId>infinispan-client-hotrod</artifactId>
+      <version>${version.infinispan}</version>
+      <scope>test</scope>
+      <type>test-jar</type>
+    </dependency>
 
-        <dependency>
-            <groupId>org.infinispan</groupId>
-            <artifactId>infinispan-client-hotrod</artifactId>
-            <version>${version.infinispan}</version>
-            <scope>test</scope>
-            <type>test-jar</type>
-        </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${version.junit}</version>
+      <scope>test</scope>
+    </dependency>
+    
 
-    </dependencies>
+  </dependencies>
 
 </project>

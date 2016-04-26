@@ -3,12 +3,6 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.infinispan</groupId>
-        <artifactId>infinispan-parent</artifactId>
-        <version>7.2.5.Final</version>
-    </parent>
-
     <groupId>org.infinispan</groupId>
     <artifactId>infinispan-avro</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -30,8 +24,10 @@
         <maven-javadoc-plugin.version>2.8.1</maven-javadoc-plugin.version>
         <maven-gpg-plugin.version>1.4</maven-gpg-plugin.version>
         <maven-release-plugin.version>2.5</maven-release-plugin.version>
-        <javac.src.version>1.7</javac.src.version>
+        <javac.source.version>1.7</javac.source.version>
         <javac.target.version>1.7</javac.target.version>
+	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
     <licenses>

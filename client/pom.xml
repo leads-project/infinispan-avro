@@ -1,59 +1,68 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.infinispan</groupId>
-        <artifactId>infinispan-avro</artifactId>
-	<version>1.0-SNAPSHOT</version>
-        <relativePath>../</relativePath>
-    </parent>
-
+  <parent>
     <groupId>org.infinispan</groupId>
-    <artifactId>infinispan-avro-client</artifactId>
-    <name>Infinispan Avro Support Client</name>
-    <description>
-        This module contains the client classes to support the storage and querying
-        of Apache Avro objects atop Infinispan.
-    </description>
+    <artifactId>infinispan-avro</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <relativePath>../</relativePath>
+  </parent>
 
-    <dependencies>
-      <dependency>
+  <groupId>org.infinispan</groupId>
+  <artifactId>infinispan-avro-client</artifactId>
+  <name>Infinispan Avro Support Client</name>
+  <description>
+    This module contains the client classes to support the storage and querying
+    of Apache Avro objects atop Infinispan.
+  </description>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.avro</groupId>
+      <artifactId>avro</artifactId>
+      <version>${version.avro}</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.infinispan</groupId>
+      <artifactId>infinispan-commons</artifactId>
+      <version>${version.infinispan}</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
         <groupId>org.apache.avro</groupId>
-        <artifactId>avro</artifactId>
+        <artifactId>avro-maven-plugin</artifactId>
         <version>${version.avro}</version>
-        <scope>compile</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.infinispan</groupId>
-        <artifactId>infinispan-commons</artifactId>
-        <version>${version.infinispan}</version>
-        <scope>compile</scope>
-      </dependency>
-    </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.avro</groupId>
-                <artifactId>avro-maven-plugin</artifactId>
-                <version>${version.avro}</version>
-                <executions>
-                    <execution>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>schema</goal>
-                        </goals>
-                        <configuration>
-                            <stringType>String</stringType>
-                            <sourceDirectory>${project.basedir}/src/main/resources</sourceDirectory>
-                            <outputDirectory>${project.basedir}/src/main/java/</outputDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+        <executions>
+          <execution>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>schema</goal>
+            </goals>
+            <configuration>
+              <stringType>String</stringType>
+              <sourceDirectory>${project.basedir}/src/main/resources</sourceDirectory>
+              <outputDirectory>${project.basedir}/src/main/java/</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.5.1</version>
+        <configuration>
+          <source>${javac.source.version}</source>
+          <target>${javac.target.version}</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>

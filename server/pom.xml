@@ -1,149 +1,170 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.infinispan</groupId>
-        <artifactId>infinispan-avro</artifactId>
-	<version>1.0-SNAPSHOT</version>
-        <relativePath>../</relativePath>
-    </parent>
-
+  <parent>
     <groupId>org.infinispan</groupId>
-    <artifactId>infinispan-avro-server</artifactId>
-    <name>Infinispan Avro Support Server</name>
-    <description>
-        This module contains the server code to store and query Apache Avro objects using Infinispan.
-    </description>
+    <artifactId>infinispan-avro</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <relativePath>../</relativePath>
+  </parent>
 
-    <properties>
-      <module.skipComponentMetaDataProcessing>false</module.skipComponentMetaDataProcessing>
-    </properties>
-    
-    <dependencies>
-        <dependency>
-            <groupId>${project.parent.groupId}</groupId>
-            <artifactId>infinispan-avro-client</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
+  <groupId>org.infinispan</groupId>
+  <artifactId>infinispan-avro-server</artifactId>
+  <name>Infinispan Avro Support Server</name>
+  <description>
+    This module contains the server code to store and query Apache Avro objects using Infinispan.
+  </description>
 
-        <dependency>
-            <groupId>org.infinispan</groupId>
-            <artifactId>infinispan-server-core</artifactId>
-            <version>${version.infinispan}</version>
-        </dependency>
+  <properties>
+    <module.skipComponentMetaDataProcessing>false</module.skipComponentMetaDataProcessing>
+  </properties>
+  
+  <dependencies>
+    <dependency>
+      <groupId>${project.parent.groupId}</groupId>
+      <artifactId>infinispan-avro-client</artifactId>
+      <version>${project.parent.version}</version>
+    </dependency>
 
-        <dependency>
-            <groupId>org.infinispan</groupId>
-            <artifactId>infinispan-commons</artifactId>
-            <version>${version.infinispan}</version>
-            <scope>compile</scope>
-        </dependency>
+    <dependency>
+      <groupId>org.infinispan</groupId>
+      <artifactId>infinispan-server-core</artifactId>
+      <version>${version.infinispan}</version>
+    </dependency>
 
-        <dependency>
-            <groupId>org.infinispan</groupId>
-            <artifactId>infinispan-core</artifactId>
-            <version>${version.infinispan}</version>
-            <scope>compile</scope>
-        </dependency>
+    <dependency>
+      <groupId>org.infinispan</groupId>
+      <artifactId>infinispan-commons</artifactId>
+      <version>${version.infinispan}</version>
+      <scope>compile</scope>
+    </dependency>
 
-        <dependency>
-            <groupId>org.infinispan</groupId>
-            <artifactId>infinispan-directory-provider</artifactId>
-            <version>${version.infinispan}</version>
-            <scope>compile</scope>
-        </dependency>
+    <dependency>
+      <groupId>org.infinispan</groupId>
+      <artifactId>infinispan-core</artifactId>
+      <version>${version.infinispan}</version>
+      <scope>compile</scope>
+    </dependency>
 
-        <dependency>
-            <groupId>org.infinispan</groupId>
-            <artifactId>infinispan-lucene-directory</artifactId>
-            <version>${version.infinispan}</version>
-            <scope>compile</scope>
-        </dependency>
+    <dependency>
+      <groupId>org.infinispan</groupId>
+      <artifactId>infinispan-directory-provider</artifactId>
+      <version>${version.infinispan}</version>
+      <scope>compile</scope>
+    </dependency>
 
-        <dependency>
-            <groupId>org.infinispan</groupId>
-            <artifactId>infinispan-objectfilter</artifactId>
-            <version>${version.infinispan}</version>
-            <scope>compile</scope>
-        </dependency>
+    <dependency>
+      <groupId>org.infinispan</groupId>
+      <artifactId>infinispan-lucene-directory</artifactId>
+      <version>${version.infinispan}</version>
+      <scope>compile</scope>
+    </dependency>
 
-        <dependency>
-            <groupId>org.infinispan</groupId>
-            <artifactId>infinispan-query</artifactId>
-            <version>${version.infinispan}</version>
-            <scope>compile</scope>
-        </dependency>
+    <dependency>
+      <groupId>org.infinispan</groupId>
+      <artifactId>infinispan-objectfilter</artifactId>
+      <version>${version.infinispan}</version>
+      <scope>compile</scope>
+    </dependency>
 
-        <dependency>
-            <groupId>org.infinispan</groupId>
-            <artifactId>infinispan-query-dsl</artifactId>
-            <version>${version.infinispan}</version>
-            <scope>compile</scope>
-        </dependency>
+    <dependency>
+      <groupId>org.infinispan</groupId>
+      <artifactId>infinispan-query</artifactId>
+      <version>${version.infinispan}</version>
+      <scope>compile</scope>
+    </dependency>
 
-        <dependency>
-            <groupId>org.apache.lucene</groupId>
-            <artifactId>lucene-core</artifactId>
-            <version>${lucene-solr.version}</version>
-            <scope>compile</scope>
-        </dependency>
+    <dependency>
+      <groupId>org.infinispan</groupId>
+      <artifactId>infinispan-query-dsl</artifactId>
+      <version>${version.infinispan}</version>
+      <scope>compile</scope>
+    </dependency>
 
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-search-orm</artifactId>
-            <version>${version.hibernate-search-orm}</version>
-            <scope>compile</scope>
-        </dependency>
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-core</artifactId>
+      <version>${lucene-solr.version}</version>
+      <scope>compile</scope>
+    </dependency>
 
-        <dependency>
-            <groupId>org.hibernate.hql</groupId>
-            <artifactId>hibernate-hql-lucene</artifactId>
-            <version>${version.hibernate-hql}</version>
-            <scope>compile</scope>
-        </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-search-orm</artifactId>
+      <version>${version.hibernate-search-orm}</version>
+      <scope>compile</scope>
+    </dependency>
 
-        <!-- test -->
+    <dependency>
+      <groupId>org.hibernate.hql</groupId>
+      <artifactId>hibernate-hql-lucene</artifactId>
+      <version>${version.hibernate-hql}</version>
+      <scope>compile</scope>
+    </dependency>
 
-        <dependency>
-            <groupId>org.infinispan</groupId>
-            <artifactId>infinispan-core</artifactId>
-            <version>${version.infinispan}</version>
-            <type>test-jar</type>
-            <scope>test</scope>
-        </dependency>
+    <!-- test -->
 
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>6.8.8</version>
-            <scope>test</scope>
-        </dependency>
+    <dependency>
+      <groupId>org.infinispan</groupId>
+      <artifactId>infinispan-core</artifactId>
+      <version>${version.infinispan}</version>
+      <type>test-jar</type>
+      <scope>test</scope>
+    </dependency>
 
-    </dependencies>
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>6.8.8</version>
+      <scope>test</scope>
+    </dependency>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.avro</groupId>
-                <artifactId>avro-maven-plugin</artifactId>
-                <version>${version.avro}</version>
-                <executions>
-                    <execution>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>schema</goal>
-                        </goals>
-                        <configuration>
-                            <stringType>String</stringType>
-                            <testSourceDirectory>${project.basedir}/src/test/resources</testSourceDirectory>
-                            <testOutputDirectory>${project.basedir}/src/test/java/</testOutputDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.avro</groupId>
+        <artifactId>avro-maven-plugin</artifactId>
+        <version>${version.avro}</version>
+        <executions>
+          <execution>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>schema</goal>
+            </goals>
+            <configuration>
+              <stringType>String</stringType>
+              <testSourceDirectory>${project.basedir}/src/test/resources</testSourceDirectory>
+              <testOutputDirectory>${project.basedir}/src/test/java/</testOutputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-jar-plugin</artifactId>
+	<version>2.6</version>
+	<executions>
+          <execution>
+            <goals>
+              <goal>test-jar</goal>
+            </goals>
+          </execution>
+	</executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.5.1</version>
+        <configuration>
+          <source>${javac.source.version}</source>
+          <target>${javac.target.version}</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>
